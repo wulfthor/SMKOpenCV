@@ -14,7 +14,7 @@ print(str(he) + " " + str(h))
 print(str(we) + " " + str(w))
 print(" " + str(bpp))
 
-
+'''
 for i in range(0,(h-1)): 
 	print edges[i]
 
@@ -27,12 +27,11 @@ for i in range(0,(h-1)):
 
 
 cv2.imshow('matrix',edges)
-
 '''
+
 plt.subplot(121),plt.imshow(img,cmap = 'gray')
 plt.title('Original Image'), plt.xticks([]), plt.yticks([])
 plt.subplot(122),plt.imshow(edges,cmap = 'gray')
 plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
 
 plt.show()
-'''
