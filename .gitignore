@@ -44,7 +44,9 @@ angular.xcodeproj
 .idea
 *.txt
 *.jpg
-util/newtry
+adstat/*
+util/*
+trash/*
 *.iml
 .agignore
 .lvimrc
