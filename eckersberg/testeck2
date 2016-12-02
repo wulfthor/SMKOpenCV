@@ -1,0 +1,4 @@
+curl -o http://cspic.smk.dk/globus/GLOBUS%202010/KMS1763.JPG KMS1763_1817-12-31T00:00:00Z
+curl -o http://cspic.smk.dk/Lores/KKSGrafik/2003/eckersb_007.jpg KKS379_1813-12-31T00:00:00Z
+curl -o http://cspic.smk.dk/globus/GLOBUS%202005/globus%20juni%202005/pc4-16-06-05%20021.jpg KKS1991-220/15 verso_1804-12-31T00:00:00Z
+curl -o http://cspic.smk.dk/globus/GLOBUS%202005/globus%20juni%202005/pc4-16-06-05%20001.jpg KKS1991-220/1_1804-12-31T00:00:00Z

@@ -31,16 +31,12 @@ def doStat(inputFile):
   outdir='adstat'
 
   for line in lines:
-    logging.info("doing line " + line)
     lineSplit=line.split(',')
     url=lineSplit[1]
     outname=lineSplit[0]
     filePost=url.split("/")
     tmpfileLine='/'.join(filePost[3:])
     fileLine = '/mnt/cifs/Globus/' + tmpfileLine.rstrip()
-    outputFile= outdir + "/" + outname + ".json"
-    fh=open(outputFile, 'w')
-    tmpLine='[{"id":"' + outname + '",'
 
     try:
       if test == '1':
@@ -66,15 +62,15 @@ def doStat(inputFile):
         val=tval*100
 
         if test == '2':
-          plt.subplot(1,3,1)
+          #plt.subplot(1,3,1)
           plt.hist(thue*360,bins=360,range=(0.0,360.0),histtype='stepfilled',color='r')
           plt.legend()
-          plt.subplot(1,3,2)
-          plt.hist(sat,bins=100,range=(0.0,100.0),histtype='stepfilled',color='g')
-          plt.legend()
-          plt.subplot(1,3,3)
-          plt.hist(val,bins=100,range=(0.0,100.0),histtype='stepfilled',color='b')
-          plt.legend()
+          #plt.subplot(1,3,2)
+          #plt.hist(sat,bins=100,range=(0.0,100.0),histtype='stepfilled',color='g')
+          #plt.legend()
+          #plt.subplot(1,3,3)
+          #plt.hist(val,bins=100,range=(0.0,100.0),histtype='stepfilled',color='b')
+          #plt.legend()
           plt.show()
 
 
@@ -101,34 +97,36 @@ def doStat(inputFile):
         dVal = int(np.ndarray.std(val))
         vVal = int(np.ndarray.var(val))
 
-        tmpLine+='"hue_med":{"set":' + str(mHue) + '},'
-        tmpLine+='"hue_mea":{"set":' + str(nHue) + '},'
-        tmpLine+='"hue_dev":{"set":' + str(dHue) + '},'
-        tmpLine+='"hue_var":{"set":' + str(vHue) + '},'
-        tmpLine+='"sat_med":{"set":' + str(nSat) + '},'
-        tmpLine+='"sat_mea":{"set":' + str(mSat) + '},'
-        tmpLine+='"sat_dev":{"set":' + str(dSat) + '},'
-        tmpLine+='"sat_var":{"set":' + str(vSat) + '},'
-        tmpLine+='"val_med":{"set":' + str(mVal) + '},'
-        tmpLine+='"val_mea":{"set":' + str(nVal) + '},'
-        tmpLine+='"val_dev":{"set":' + str(dVal) + '},'
-        tmpLine+='"val_var":{"set":' + str(vVal) + '},'
-        tmpLine+='"hue_max":{"set":' + str(maxHue) + '},'
-        tmpLine+='"hue_max_bin":{"set":' + str(maxHueIdx) + '},'
-        tmpLine+='"sat_max":{"set":' + str(maxSat) + '},'
-        tmpLine+='"sat_max_bin":{"set":' + str(maxSatIdx) + '},'
-        tmpLine+='"val_max":{"set":' + str(maxVal) + '},'
-        tmpLine+='"val_max_bin":{"set":' + str(maxValIdx) + '}}]'
-
       if img.shape <= 2:
         logging.info("its BW just compute intensity")
 
 
-    except Exception as e:
-      logging.exception("Err: " + line)
-      continue
+      except Exception as e:
+        logging.exception("Err: " + line)
+        continue
 
 
+    outputFile= outdir + "/" + outname + ".json"
+    fh=open(outputFile, 'w')
+    tmpLine='[{"id":"' + outname + '",'
+    tmpLine+='"hue_med":{"set":' + str(mHue) + '},'
+    tmpLine+='"hue_mea":{"set":' + str(nHue) + '},'
+    tmpLine+='"hue_dev":{"set":' + str(dHue) + '},'
+    tmpLine+='"hue_var":{"set":' + str(vHue) + '},'
+    tmpLine+='"sat_med":{"set":' + str(nSat) + '},'
+    tmpLine+='"sat_mea":{"set":' + str(mSat) + '},'
+    tmpLine+='"sat_dev":{"set":' + str(dSat) + '},'
+    tmpLine+='"sat_var":{"set":' + str(vSat) + '},'
+    tmpLine+='"val_med":{"set":' + str(mVal) + '},'
+    tmpLine+='"val_mea":{"set":' + str(nVal) + '},'
+    tmpLine+='"val_dev":{"set":' + str(dVal) + '},'
+    tmpLine+='"val_var":{"set":' + str(vVal) + '},'
+    tmpLine+='"hue_max":{"set":' + str(maxHue) + '},'
+    tmpLine+='"hue_max_bin":{"set":' + str(maxHueIdx) + '},'
+    tmpLine+='"sat_max":{"set":' + str(maxSat) + '},'
+    tmpLine+='"sat_max_bin":{"set":' + str(maxSatIdx) + '},'
+    tmpLine+='"val_max":{"set":' + str(maxVal) + '},'
+    tmpLine+='"val_max_bin":{"set":' + str(maxValIdx) + '}}]'
     fh.write(tmpLine)
     fh.close()
 
